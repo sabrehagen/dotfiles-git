@@ -21,6 +21,7 @@
     s = status
     co = checkout
     cob = checkout -b
+    cot = checkout --track
 
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
@@ -35,7 +36,7 @@
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
 
-    #  add a remote pointing to another developer's fork
+    # add a remote pointing to another developer's fork
     ra = "!f() { \
         git remote add $1 git@github.com:stemn/$2.git; \
       }; f"
@@ -47,8 +48,14 @@
 
     # git command line dashboard
     dashboard = "!f() { \
-        grv -repoFilePath ${STEMN_BACKEND-/stemn/stemn-backend} \"$@\"; \
+        /usr/local/bin/grv -repoFilePath ${STEMN_BACKEND-/stemn/stemn-backend} \"$@\"; \
       }; f"
+
+    pr = "!f() { \
+        BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD); \
+        git push -u origin $BRANCH_NAME; \
+        hub pull-request -b staging -m \"WIP: $BRANCH_NAME\"; \
+    }; f"
 
 [push]
     default = simple
@@ -76,3 +83,4 @@
     old = red bold
     new = green bold
     whitespace = red reverse
+
