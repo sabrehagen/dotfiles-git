@@ -1,13 +1,16 @@
 [alias]
     # one-line log
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
     a = add
-    ai = "!f() { git status -s | sed s/^...// | ipt -m -M 'Select files to add:' | xargs git add; git s; }; f"
+    added = diff --cached
+    ai = add -p
 
     ap = add -p
     c = commit --verbose
     ca = commit -a --verbose
+    ci = checkout -p HEAD
     cm = commit -m
     cam = commit -a -m
     m = commit --amend --verbose
@@ -16,7 +19,6 @@
 
     d = diff
     ds = diff --stat
-    dc = diff --cached
 
     s = status
     co = checkout
@@ -25,8 +27,9 @@
 
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    bc = "!f() { git branch --merged | egrep -v \"(^\\*|master|staging)\" | xargs git branch -d; }; f"
     bls = ls-remote --heads
-    bb = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
+    br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
     bd = branch -D
     tree = log --oneline --graph --all --decorate --abbrev-commit
 
@@ -51,10 +54,51 @@
         /usr/local/bin/grv -repoFilePath ${STEMN_BACKEND-/stemn/stemn-backend} \"$@\"; \
       }; f"
 
+    # create a pull request. first argument is pull request name.
     pr = "!f() { \
-        BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD); \
-        git push -u origin $BRANCH_NAME; \
-        hub pull-request -b staging -m \"WIP: $BRANCH_NAME\"; \
+      BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD); \
+      PR_NAME=${1-$BRANCH_NAME}; \
+      git add .; \
+      git cm $PR_NAME; \
+      git push -u origin $BRANCH_NAME:$PR_NAME; \
+      hub pull-request -b staging -h $PR_NAME -m \"WIP: ${PR_NAME}\"; \
+    }; f"
+
+    # interactively split code into separate branches
+    # doesnt allow BASH-style if statements
+    split = "!f() { \
+      BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD); \
+      UUID=$(cut -c-4 /proc/sys/kernel/random/uuid); \
+      \
+      git status; \
+      echo ""; \
+      echo \\<======================== G I T ---- S P L I T ========================\\>;\
+      echo [Please select the changes to store to the $BRANCH_NAME branch]; \
+      echo [NOTE: Leftover unstaged changes will be automatically pushed to the split branch]; \
+      if $(echo $BRANCH_NAME | grep -qE '\\-split\\-'); \
+        then SPLIT_NAME=${BRANCH_NAME}-${UUID}; \
+        else SPLIT_NAME=${BRANCH_NAME}-split-${UUID}; \
+      fi; \
+      \
+      git branch -c $BRANCH_NAME $SPLIT_NAME; \
+      read -p 'press ENTER to interactively select changes\n' BLANK; \
+      git add --interactive; \
+      \
+      read -p 'Enter the commit message for your selected changes: ' COMMIT_MSG; \
+      git commit -m \"$COMMIT_MSG\"; \
+      git push; \
+      \
+      read -p 'press ENTER to push leftover changes to the split branch\n' BLANK; \
+      git stash push --no-keep-index --include-untracked; \
+      \
+      git checkout $SPLIT_NAME; \
+      git branch --unset-upstream; \
+      git stash pop; \
+      \
+      read -p 'Enter the commit message for the leftover changes: ' COMMIT_MSG; \
+      git add -A; \
+      git commit -am \"$COMMIT_MSG\"; \
+      git push -u origin $SPLIT_NAME; \
     }; f"
 
 [push]
@@ -66,6 +110,9 @@
 
 [sequence]
     editor = rebase-editor
+
+[interactive]
+    singleKey = true
 
 [color]
     ui = true
@@ -84,3 +131,8 @@
     new = green bold
     whitespace = red reverse
 
+[diff]
+    interHunkContext = 0
+[user]
+	email = jackson@stemn.com
+	name = Jackson Delahunt
