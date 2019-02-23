@@ -21,6 +21,8 @@
     ds = diff --stat
 
     s = status
+    su = status --untracked-files=no
+
     co = checkout
     cob = checkout -b
     cot = checkout --track
