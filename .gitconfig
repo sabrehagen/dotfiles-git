@@ -1,31 +1,7 @@
 [alias]
-    # one-line log
-    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-
     a = add
     added = diff --cached
     ai = add -p
-
-    ap = add -p
-    c = commit --verbose
-    ca = commit -a --verbose
-    ci = checkout -p HEAD
-    cm = commit -m
-    cam = commit -a -m
-    m = commit --amend --verbose
-    camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
-    r = remote -v
-
-    d = diff
-    ds = diff --stat
-
-    s = status
-    su = status --untracked-files=no
-
-    co = checkout
-    cob = checkout -b
-    cot = checkout --track
 
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
@@ -33,28 +9,33 @@
     bls = ls-remote --heads
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
     bd = branch -D
-    tree = log --oneline --graph --all --decorate --abbrev-commit
 
-    pp = "!git pull --no-edit; git push"
     cln = clean -df
 
-    # list aliases
-    la = "!git config -l | grep alias | cut -c 7-"
+    co = checkout
+    cob = checkout -b
+    cot = checkout --track
 
-    # add a remote pointing to another developer's fork
-    ra = "!f() { \
-        git remote add $1 git@github.com:stemn/$2.git; \
-      }; f"
+    c = commit --verbose
+    ca = commit -a --amend --verbose
+    ci = checkout -p HEAD
+    cm = commit -m
+    cam = commit -a -m
+    cmp = "!f() { git commit -m \"$1\"; git push; }; f"
+    camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
 
-    # search the git history for a string
-    search = "!f() { \
-        git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; \
-      }; f"
+    d = diff
+    dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
+    ds = diff --stat
 
-    # git command line dashboard
-    dashboard = "!f() { \
-        /usr/local/bin/grv -repoFilePath ${STEMN_BACKEND-/stemn/stemn-backend} \"$@\"; \
-      }; f"
+    # provide help by listing aliases
+    h = "!git config -l | grep alias | cut -c 7-"
+
+    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    lll = log --oneline --graph --all --decorate --abbrev-commit
+
+    pp = "!git pull --no-edit; git push"
 
     # create a pull request. first argument is pull request name.
     pr = "!f() { \
@@ -63,10 +44,17 @@
       git add .; \
       git cm $PR_NAME; \
       git push -u origin $BRANCH_NAME:$PR_NAME; \
-      hub pull-request -b staging -h $PR_NAME -m \"WIP: ${PR_NAME}\"; \
+      hub pull-request -b staging -h $PR_NAME -m \"[WIP] ${PR_NAME}\"; \
     }; f"
 
-    # interactively split code into separate branches
+    r = remote -v
+    ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
+
+    s = status
+    su = status --untracked-files=no
+    search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
+
+    # interactively split current branch into two branches
     # doesnt allow BASH-style if statements
     split = "!f() { \
       BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD); \
