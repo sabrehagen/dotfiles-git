@@ -36,6 +36,7 @@
     lll = log --oneline --graph --all --decorate --abbrev-commit
 
     p = pull
+    pu = push
     pp = "!git pull --no-edit; git push"
 
     # create a pull request. first argument is pull request name.
