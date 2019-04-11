@@ -1,7 +1,7 @@
 [alias]
     a = add
     added = diff --cached
-    ai = add -p
+    ap = add -p
 
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
@@ -18,7 +18,7 @@
 
     c = commit --verbose
     ca = commit -a --amend --verbose
-    ci = checkout -p HEAD
+    cp = checkout -p HEAD
     cm = commit -m
     cam = commit -a -m
     cmp = "!f() { git commit -m \"$1\"; git push; }; f"
@@ -35,7 +35,7 @@
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     lll = log --oneline --graph --all --decorate --abbrev-commit
 
-    p = pull
+    p = pull --rebase
     pu = push
     pp = "!git pull --no-edit; git push"
 
@@ -46,7 +46,7 @@
       git add .; \
       git cm $PR_NAME; \
       git push -u origin $BRANCH_NAME:$PR_NAME; \
-      hub pull-request -b staging -h $PR_NAME -m \"[WIP] ${PR_NAME}\"; \
+      hub pull-request -b develop -h $PR_NAME -m \"[WIP] ${PR_NAME}\"; \
     }; f"
 
     r = remote -v
