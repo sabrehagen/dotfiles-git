@@ -1,6 +1,6 @@
 [alias]
     a = add
-    added = diff --cached
+    aa = diff --cached
     ap = add -p
 
     # list branches sorted by last modified
