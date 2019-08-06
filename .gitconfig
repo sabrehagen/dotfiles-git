@@ -53,6 +53,7 @@
 
     r = remote -v
     ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
+    rbm = "!git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master)"
 
     s = status
     su = status --untracked-files=no
