@@ -8,7 +8,9 @@
     bc = "!f() { git branch --merged | egrep -v \"(^\\*|master|staging)\" | xargs git branch -d; }; f"
     bls = ls-remote --heads
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
-    bd = branch -D
+    bd = "!git diff $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
+    bdl = "!git diff --name-only $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
+    brm = branch -D
 
     cln = clean -df
 
