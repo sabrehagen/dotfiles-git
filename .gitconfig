@@ -41,7 +41,7 @@
     pp = "!git pull --no-edit; git push"
     pu = push
     puf = push -f
-    puu = push -u origin
+    puu = "!git push -u origin $(git branch | awk '/^\\* / { print $2 }')"
 
     # create a pull request. first argument is pull request name.
     pr = "!f() { \
