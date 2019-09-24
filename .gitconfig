@@ -30,7 +30,7 @@
     dbl = "!git diff --name-only $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
     ds = diff --stat
 
-    f = fetch
+    f = fetch --all
 
     # provide help by listing aliases
     h = "!git config -l | grep alias | cut -c 7-"
