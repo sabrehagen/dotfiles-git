@@ -13,8 +13,7 @@
     cln = clean -df
 
     co = checkout
-    cob = checkout -b
-    cot = checkout --track
+    cob = checkout --track
 
     c = commit --verbose
     ca = commit -a --amend --verbose
