@@ -13,7 +13,7 @@
     cln = clean -df
 
     co = checkout
-    cob = checkout --track
+    cob = "!f() { git checkout --branch \"$1\" --track \"$1\"; }; f"
 
     c = commit --verbose
     ca = commit -a --amend --verbose
