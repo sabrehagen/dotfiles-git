@@ -13,7 +13,7 @@
     cln = clean -df
 
     co = checkout
-    cob = "!f() { git checkout -b \"$1\" --track \"$1\"; }; f"
+    cob = checkout -b
 
     c = commit --verbose
     ca = commit -a --amend --verbose
@@ -99,7 +99,7 @@
     }; f"
 
 [push]
-    default = simple
+    default = current
 
 [core]
     safecrlf = false
