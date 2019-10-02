@@ -18,6 +18,7 @@
     c = commit --verbose
     ca = commit -a --amend --verbose
     cp = checkout -p HEAD
+    cpm = checkout -p master
     cm = commit -m
     cam = commit -a -m
     cmp = "!f() { git commit -m \"$1\"; git push; }; f"
