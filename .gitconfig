@@ -37,7 +37,7 @@
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
-    p = "!git fetch; git pull --rebase"
+    p = pull
     pp = "!git pull --no-edit; git push"
     pu = push
     puf = push -f
