@@ -23,6 +23,7 @@
     cam = commit -a -m
     cmp = "!f() { git commit -m \"$1\"; git push; }; f"
     camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
+    campn = "!f() { git commit -a -m \"$1\"; git pun; }; f"
 
     d = diff
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
@@ -42,6 +43,7 @@
     pp = "!git pull --no-edit; git push"
     pu = push
     puf = push -f
+    pun = push --no-verify
     puu = "!git push -u origin $(git branch | awk '/^\\* / { print $2 }')"
 
     # create a pull request. first argument is pull request name.
