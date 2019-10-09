@@ -23,7 +23,7 @@
     cam = commit -a -m
     cmp = "!f() { git commit -m \"$1\"; git push; }; f"
     camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
-    campn = "!f() { git commit -a -m \"$1\"; git pun; }; f"
+    campn = "!f() { git commit -a -m \"$1\"; git push --no-verify; }; f"
 
     d = diff
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
