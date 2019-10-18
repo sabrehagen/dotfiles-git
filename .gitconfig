@@ -16,7 +16,7 @@
     cob = checkout -b
 
     c = commit --verbose
-    ca = commit -a --amend --verbose
+    ca = commit -a --amend --no-edit --verbose
     cp = checkout -p HEAD
     cpm = checkout -p master
     cm = commit -m
