@@ -141,3 +141,5 @@
 [user]
 	email = jackson@stemn.com
 	name = Jackson Delahunt
+[diff-so-fancy]
+	stripLeadingSymbols = false
