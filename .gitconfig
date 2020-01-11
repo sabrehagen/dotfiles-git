@@ -22,7 +22,9 @@
     campn = "!f() { git commit -a -m \"$1\"; git push --no-verify; }; f"
     co = checkout
     cob = checkout -b
+    coo = checkout --ours
     cop = checkout -p HEAD
+    cot = checkout --theirs
     copm = checkout -p master
 
     d = diff
@@ -36,6 +38,7 @@
 
     # provide help by listing aliases
     h = "!git config -l | grep alias | cut -c 7-"
+    he = "show HEAD"
 
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
@@ -43,7 +46,9 @@
     m = merge
 
     p = pull
+    po = pull --no-edit --strategy recursive --strategy-option ours
     pp = "!git pull --no-edit; git push"
+    pt = pull --no-edit --strategy recursive --strategy-option theirs
     pu = push
     puf = push -f
     pun = push --no-verify
