@@ -11,16 +11,16 @@
     brm = branch -D
 
     c = commit --verbose
-    ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
-    cae = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --amend --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
+    ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit --no-verify -a --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
+    cae = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit --no-verify -a --amend --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
     caf = "!f() { git ca; git puf; }; f"
     cln = clean -df
     cm = commit -m
-    cn = commit --no-verify -m
     cam = commit -a -m
+    camn = commit --no-verify -a -m
     cmp = "!f() { git commit -m \"$1\"; git push; }; f"
     camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
-    campn = "!f() { git commit -a -m \"$1\"; git push --no-verify; }; f"
+    campn = "!f() { git commit --no-verify -a -m \"$1\"; git push --no-verify; }; f"
     co = checkout
     cob = checkout -b
     coo = checkout --ours
