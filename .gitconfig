@@ -145,7 +145,8 @@
 [diff]
     interHunkContext = 0
 [user]
-	email = jackson.delahunt@lendi.com.au
+	email = jackson@stemn.com
 	name = Jackson Delahunt
+    username = sabrehagen
 [diff-so-fancy]
 	stripLeadingSymbols = false
