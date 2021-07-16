@@ -37,6 +37,17 @@
 
     f = fetch --all
 
+    # setup a local repository to track the remote repository
+    get = "!f() { \
+      mkdir $(basename $1); \
+      cd $(basename $1); \
+      git init; \
+      git remote add origin $1; \
+      git remote set-branches origin '*'; \
+      git fetch; \
+      git merge origin/master; \
+    }; f"
+
     # provide help by listing aliases
     h = "!git config -l | grep alias | cut -c 7-"
     he = "show HEAD"
