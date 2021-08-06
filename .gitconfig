@@ -80,7 +80,8 @@
       hub pull-request -b develop -h $PR_NAME -m \"[WIP] ${PR_NAME}\"; \
     }; f"
 
-    r = remote -v
+    r = remote get-url origin
+    rr = remote -v
     ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
     rbm = "!git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master)"
 
