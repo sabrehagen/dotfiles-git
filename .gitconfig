@@ -40,8 +40,9 @@
 
     # setup a local repository to track the remote repository
     get = "!f() { \
-      mkdir $(basename $1); \
-      cd $(basename $1); \
+      REPO_NAME=$(basename $1 | sed s/.git$//); \
+      mkdir $REPO_NAME; \
+      cd $REPO_NAME; \
       git init; \
       git remote add origin $1; \
       git remote set-branches origin '*'; \
