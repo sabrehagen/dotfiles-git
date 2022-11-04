@@ -64,6 +64,7 @@
     lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
     m = merge
+    ma = merge --abort
 
     p = pull
     po = pull --no-edit --strategy recursive --strategy-option ours
