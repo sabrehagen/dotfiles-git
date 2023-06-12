@@ -171,3 +171,5 @@
     username = sabrehagen
 [diff-so-fancy]
 	stripLeadingSymbols = false
+[init]
+	defaultBranch = master
