@@ -1,7 +1,7 @@
 [alias]
     a = add
     aa = diff --cached
-    ap = add -p
+    ap = add --patch
 
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
@@ -12,9 +12,11 @@
     bu = branch -u
 
     c = commit --verbose
-    ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
+    ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
+    caa = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
     cae = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
     caf = "!f() { git ca; git puf $@; }; f"
+    caaf = "!f() { git caa; git puf $@; }; f"
     cam = commit -a -m
     camn = commit -a --no-verify -m
     camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
@@ -26,9 +28,9 @@
     co = checkout
     cob = checkout -b
     coo = checkout --ours
-    cop = checkout -p HEAD
+    cop = checkout --patch HEAD
     cot = checkout --theirs
-    copm = checkout -p master
+    copm = checkout --patch master
 
     d = diff
     dl = diff --name-only
@@ -88,6 +90,7 @@
     r = remote get-url origin
     rr = remote -v
     ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
+    rb = "!f() { git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) $1); }; f"
     rbm = "!git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master)"
 
     s = status
