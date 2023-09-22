@@ -12,8 +12,8 @@
     bu = branch -u
 
     c = commit --verbose
-    ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
-    caa = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
+    ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
+    caa = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
     cae = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
     caf = "!f() { git ca; git puf $@; }; f"
     caaf = "!f() { git caa; git puf $@; }; f"
@@ -88,10 +88,11 @@
     }; f"
 
     r = remote get-url origin
-    rr = remote -v
     ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
     rb = "!f() { git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) $1); }; f"
     rbm = "!git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master)"
+    root = rev-parse --show-toplevel
+    rr = remote -v
 
     s = status
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
