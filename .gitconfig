@@ -58,7 +58,6 @@
 
     # provide help by listing aliases
     h = "!git config -l | grep alias | cut -c 7-"
-    he = "show HEAD"
 
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     lf = "!git ls-files ~"
@@ -97,6 +96,7 @@
     replace = "!f() { git grep -l '$1' | xargs sed -i 's/$1/$2/g'; }; f" # usage: replace [source] [dest]
 
     s = status
+    sh = show HEAD
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
     st = stash
     sta = stash apply
