@@ -94,6 +94,8 @@
     root = rev-parse --show-toplevel
     rr = remote -v
 
+    replace = "!f() { git grep -l '$1' | xargs sed -i 's/$1/$2/g'; }; f" # usage: replace [source] [dest]
+
     s = status
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
     st = stash
