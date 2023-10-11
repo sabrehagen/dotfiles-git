@@ -30,6 +30,8 @@
     coo = checkout --ours
     coop = checkout --ours --patch
     cop = "!f() { git checkout --patch ${1-HEAD}; }; f"
+    copmd = cop develop
+    copm = cop master
     cot = checkout --theirs
 
     d = diff
@@ -92,6 +94,8 @@
     rb = rebase --interactive --committer-date-is-author-date
     rba = rebase --abort
     rbc = rebase --continue
+    rbd = rb develop
+    rbm = rb master
     rbo = rb --strategy-option theirs
     root = rev-parse --show-toplevel
     rr = remote -v
