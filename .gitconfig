@@ -28,11 +28,12 @@
     co = checkout
     cob = checkout -b
     coo = checkout --ours
-    cop = checkout --patch HEAD
+    coop = checkout --ours --patch
+    cop = "!f() { git checkout --patch ${1-HEAD}; }; f"
     cot = checkout --theirs
-    copm = checkout --patch master
 
     d = diff
+    dc = diff -U0
     dl = diff --name-only
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
     db = "!git diff $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
@@ -88,15 +89,17 @@
 
     r = remote get-url origin
     ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
-    rb = "!f() { git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) $1); }; f"
-    rbm = "!git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master)"
+    rb = rebase --interactive --committer-date-is-author-date
+    rba = rebase --abort
+    rbc = rebase --continue
+    rbo = rb --strategy-option theirs
     root = rev-parse --show-toplevel
     rr = remote -v
 
-    replace = "!f() { git grep -l '$1' | xargs sed -i 's/$1/$2/g'; }; f" # usage: replace [source] [dest]
+    replace = "!f() { git grep --files-with-matches '$1' | xargs sed -i 's/$1/$2/g'; }; f" # usage: replace [source] [dest]
 
     s = status
-    sh = show HEAD
+    sh = "!f() { git show ${1-HEAD}; }; f"
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
     st = stash
     sta = stash apply
@@ -180,4 +183,4 @@
 [init]
 	defaultBranch = master
 [pull]
-	rebase = false
+	rebase = true
