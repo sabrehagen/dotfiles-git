@@ -210,8 +210,8 @@
 [diff]
     interHunkContext = 0
 [user]
-    email = jackson@stemn.com
-    name = Jackson Delahunt
+	email = jackson.delahunt@cba.tech
+	name = Jackson Delahunt
     username = sabrehagen
 [diff-so-fancy]
     stripLeadingSymbols = false
