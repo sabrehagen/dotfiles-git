@@ -17,14 +17,14 @@
     cae = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
     caf = "!f() { git ca; git puf $@; }; f"
     caaf = "!f() { git caa; git puf $@; }; f"
-    cam = commit -a -m
-    camn = commit -a --no-verify -m
-    camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
-    campn = "!f() { git commit -a --no-verify -m \"$1\"; git push --no-verify; }; f"
-    cep = "!f() { git commit --allow-empty -m \"${1-empty-commit}\"; git push; }; f"
+    cam = commit --all --message
+    camn = commit --all --no-verify --message
+    camp = "!f() { git commit --all --message \"$1\"; git push; }; f"
+    campn = "!f() { git commit --all --no-verify --message \"$1\"; git push --no-verify; }; f"
+    cep = "!f() { git commit --allow-empty --message \"${1-empty-commit}\"; git push; }; f"
     cln = clean -df
-    cm = commit -m
-    cmp = "!f() { git commit -m \"$1\"; git push; }; f"
+    cm = commit --message
+    cmp = "!f() { git commit --message \"$1\"; git push; }; f"
     co = checkout
     cob = checkout -b
     coo = checkout --ours
@@ -80,7 +80,7 @@
     psu = "!f() { git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current); git pull; }; f"
     pt = pull --no-edit --strategy recursive --strategy-option theirs
     pu = push
-    puf = push -f
+    puf = push --force
     pun = push --no-verify
     puu = "!git push -u origin $(git branch | awk '/^\\* / { print $2 }')"
 
@@ -103,7 +103,8 @@
     rbm = rb master
     rbo = rb --strategy-option theirs
     root = rev-parse --show-toplevel
-    rr = remote -v
+    rp = reset --patch
+    rr = remote --verbose
 
     s = status
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
@@ -184,12 +185,12 @@
 [diff]
     interHunkContext = 0
 [user]
-	email = jackson@stemn.com
-	name = Jackson Delahunt
+    email = jackson@stemn.com
+    name = Jackson Delahunt
     username = sabrehagen
 [diff-so-fancy]
-	stripLeadingSymbols = false
+    stripLeadingSymbols = false
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [pull]
-	rebase = true
+    rebase = true
