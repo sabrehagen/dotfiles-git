@@ -44,6 +44,9 @@
 
     f = fetch --all
 
+    find = "!f() { git grep \"$1\" $(git root); }; f"
+    subst = "!f() { git grep --name-only \"$1\" $(git root) | xargs sed -i \"s/$1/$2/g\"; }; f" # usage: subst [source] [dest]
+
     # setup a local repository to track the remote repository
     get = "!f() { \
       REPO_NAME=$(basename $1 | sed s/.git$//); \
@@ -101,8 +104,6 @@
     rbo = rb --strategy-option theirs
     root = rev-parse --show-toplevel
     rr = remote -v
-
-    replace = "!f() { git grep --files-with-matches '$1' | xargs sed -i 's/$1/$2/g'; }; f" # usage: replace [source] [dest]
 
     s = status
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
