@@ -38,8 +38,8 @@
     dc = diff -U0
     dl = diff --name-only
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
-    db = "!git diff $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
-    dbl = "!git diff --name-only $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
+    db = "!git diff $(git merge-base $(git branch --show-current) develop master) $(git branch --show-current)"
+    dbl = "!git diff --name-only $(git merge-base $(git branch --show-current) develop master) $(git branch --show-current)"
     ds = diff --stat
 
     f = fetch --all
@@ -73,6 +73,8 @@
     p = pull
     po = pull --no-edit --strategy recursive --strategy-option ours
     pp = "!git pull --no-edit; git push"
+    pst = "!f() { git stash; git pull; git stash apply; }; f"
+    psu = "!f() { git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current); git pull; }; f"
     pt = pull --no-edit --strategy recursive --strategy-option theirs
     pu = push
     puf = push -f
@@ -103,8 +105,9 @@
     replace = "!f() { git grep --files-with-matches '$1' | xargs sed -i 's/$1/$2/g'; }; f" # usage: replace [source] [dest]
 
     s = status
-    sh = "!f() { git show ${1-HEAD}; }; f"
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
+    sf = "!f() { git diff $(git hash-object -t tree /dev/null) ${1-master}; }; f" # show all files on branch
+    sh = "!f() { git show HEAD${1:+\\~$1}; }; f"
     st = stash
     sta = stash apply
     su = status --untracked-files=no
