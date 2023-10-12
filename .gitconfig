@@ -108,6 +108,7 @@
     search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep \"$@\"; }; f"
     sf = "!f() { git diff $(git hash-object -t tree /dev/null) ${1-master}; }; f" # show all files on branch
     sh = "!f() { git show HEAD${1:+\\~$1}; }; f"
+    ss = stash show --patch
     st = stash
     sta = stash apply
     su = status --untracked-files=no
