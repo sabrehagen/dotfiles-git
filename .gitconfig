@@ -9,7 +9,7 @@
     bls = ls-remote --heads
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
     brm = branch -D
-    bu = branch -u
+    bu = branch --set-upstream-to
 
     c = commit --verbose
     ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
