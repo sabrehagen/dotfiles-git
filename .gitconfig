@@ -7,9 +7,9 @@
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     bc = "!f() { git branch --merged | egrep -v \"(^\\*|master|staging)\" | xargs git branch -d; }; f"
     bls = ls-remote --heads
+    bmv = branch -m
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
     brm = branch -D
-    brn = branch -m
     bu = branch --set-upstream-to
 
     c = commit --verbose
