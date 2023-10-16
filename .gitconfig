@@ -76,7 +76,6 @@
     p = pull
     po = pull --no-edit --strategy recursive --strategy-option ours
     pp = "!git pull --no-edit; git push"
-    psp = "!f() { git stash; git pull; git stash pop; }; f"
     psu = "!f() { git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current); git pull; }; f"
     pt = pull --no-edit --strategy recursive --strategy-option theirs
     pu = push
@@ -197,3 +196,5 @@
     defaultBranch = master
 [pull]
     rebase = true
+[rebase]
+    autostash = true
