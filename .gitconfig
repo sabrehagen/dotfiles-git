@@ -9,6 +9,7 @@
     bls = ls-remote --heads
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
     brm = branch -D
+    brn = branch -m
     bu = branch --set-upstream-to
 
     c = commit --verbose
