@@ -7,9 +7,9 @@
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     bc = "!f() { git branch --merged | egrep -v \"(^\\*|master|staging)\" | xargs git branch -d; }; f"
     bls = ls-remote --heads
-    bmv = branch -m
+    bmv = branch --move
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
-    brm = branch -D
+    brm = branch --delete
     bu = branch --set-upstream-to
 
     c = commit --verbose
@@ -101,10 +101,24 @@
     rbc = rebase --continue
     rbd = rb develop
     rbm = rb master
-    rbo = rb --strategy-option theirs
+    rbos = rb --strategy-option theirs
     root = rev-parse --show-toplevel
     rp = reset --patch
     rr = remote --verbose
+
+    rbo = "!f() { \
+      BRANCH_NAME=$(git branch --show-current); \
+      REBASE_BRANCH_NAME=$(git branch --show-current)-$(date +'%I-%M-%S.%d-%m-%y'); \
+      git checkout -b $REBASE_BRANCH_NAME; \
+      git rebase --interactive --strategy-option theirs $1; \
+      if $(git diff --exit-code $BRANCH_NAME); then \
+        git branch --move $BRANCH_NAME $REBASE_BRANCH_NAME-pre-rebase; \
+        git branch --move $REBASE_BRANCH_NAME $BRANCH_NAME; \
+      else \
+        echo Branch contains new changes after `git rebase --strategy-option theirs`; \
+        git diff $REBASE_BRANCH_NAME; \
+      fi; \
+    }; f"
 
     s = status
     sa = stash apply
