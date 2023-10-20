@@ -27,7 +27,7 @@
     cm = commit --message
     cmp = "!f() { git commit --message \"$1\"; git push; }; f"
     co = checkout
-    cob = checkout -b
+    cob = "!f() { git checkout -b $(echo $1 | tr ' ' -); }; f"
     coo = checkout --ours
     coop = checkout --ours --patch
     cop = "!f() { git checkout --patch ${1-HEAD}; }; f"
