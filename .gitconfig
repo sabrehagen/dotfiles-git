@@ -31,7 +31,7 @@
     coo = checkout --ours
     coop = checkout --ours --patch
     cop = "!f() { git checkout --patch ${1-HEAD}; }; f"
-    copmd = cop develop
+    copd = cop develop
     copm = cop master
     cot = checkout --theirs
 
