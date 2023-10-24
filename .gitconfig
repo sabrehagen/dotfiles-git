@@ -1,6 +1,7 @@
 [alias]
     a = add
     aa = diff --cached
+    alias = "!f() { git config -l | grep alias | sed 's/^alias\\.//g' | grep -v ^alias | grep -E cln; }; f"
     ap = add --patch
 
     # list branches sorted by last modified
