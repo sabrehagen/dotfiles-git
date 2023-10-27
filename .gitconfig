@@ -210,7 +210,7 @@
 [diff]
     interHunkContext = 0
 [user]
-	email = jackson.delahunt@cba.tech
+	email = Jackson.Delahunt@cba.tech
 	name = Jackson Delahunt
     username = sabrehagen
 [diff-so-fancy]
@@ -221,3 +221,8 @@
     rebase = true
 [rebase]
     autostash = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
