@@ -106,6 +106,7 @@
     rbd = rb develop
     rbm = rb master
     rbos = rb --strategy-option theirs
+    rh = reset HEAD
     root = rev-parse --show-toplevel
     rp = reset --patch
     rr = remote --verbose
