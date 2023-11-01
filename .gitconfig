@@ -3,6 +3,8 @@
     aa = diff --cached
     alias = "!f() { git config -l | grep alias | sed 's/^alias\\.//g' | grep -v ^alias | grep -E ^$1=; }; f"
     ap = add --patch
+    app = "!f() { git show $1 | git apply; }; f"
+    apr = "!f() { git show $1 | git apply -R; }; f"
 
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
