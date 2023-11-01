@@ -26,6 +26,7 @@
     camp = "!f() { git commit --all --message \"$1\"; git push; }; f"
     campn = "!f() { git commit --all --no-verify --message \"$1\"; git push --no-verify; }; f"
     cep = "!f() { git commit --allow-empty --message \"${1-empty-commit}\"; git push; }; f"
+    chp = cherry-pick
     cln = clean -df
     cm = commit --message
     cmp = "!f() { git commit --message \"$1\"; git push; }; f"
