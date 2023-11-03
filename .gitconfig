@@ -116,12 +116,13 @@
       BRANCH_NAME=$(git branch --show-current); \
       REBASE_BRANCH_NAME=$(git branch --show-current)-$(date +'%I-%M-%S.%d-%m-%y'); \
       git checkout -b $REBASE_BRANCH_NAME; \
-      git rebase --interactive --strategy-option theirs $1; \
+      git rebase --empty drop --interactive --strategy-option theirs $1; \
       if $(git diff --exit-code $BRANCH_NAME); then \
         git branch --move $BRANCH_NAME $REBASE_BRANCH_NAME-pre-rebase; \
         git branch --move $REBASE_BRANCH_NAME $BRANCH_NAME; \
+        echo Rebase completed successfully.; \
       else \
-        echo Branch contains new changes after `git rebase --strategy-option theirs`; \
+        echo Branch contains new changes after 'git rebase --strategy-option theirs'; \
         git diff $REBASE_BRANCH_NAME; \
       fi; \
     }; f"
