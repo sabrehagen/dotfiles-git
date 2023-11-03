@@ -44,8 +44,8 @@
     dc = diff -U0
     dl = diff --name-only
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
-    db = "!git diff $(git merge-base $(git branch --show-current) develop master)"
-    dbl = "!git diff --name-only $(git merge-base $(git branch --show-current) develop master)"
+    db = "!git diff $(git merge-base $(git branch --show-current) master)"
+    dbl = "!git diff --name-only $(git merge-base $(git branch --show-current) master)"
     ds = diff --stat
 
     f = fetch --all
