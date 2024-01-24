@@ -85,7 +85,7 @@
     pp = "!git pull --no-edit; git push"
     psu = "!f() { git branch --set-upstream-to origin/$(git branch --show-current); git pull; }; f"
     pt = pull --no-edit --strategy recursive --strategy-option theirs
-    pu = "!f() { git push origin $(git branch --show-current)${1:+:$1}; }; f"
+    pu = "!f() { git push ${1:+origin $(git branch --show-current):$1}; }; f"
     puf = push --force
     pun = push --no-verify
     puu = "!f() { git push --set-upstream origin $(git branch --show-current)${1:+:$1}; }; f"
