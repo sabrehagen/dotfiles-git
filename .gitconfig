@@ -15,6 +15,7 @@
     bmv = branch --move
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
     bu = branch --set-upstream-to
+    buu = "!f() { git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current); }; f"
 
     c = commit --verbose
     ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --no-verify --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
@@ -44,8 +45,8 @@
     dc = diff -U0
     dl = diff --name-only
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
-    db = "!git diff $(git merge-base $(git branch --show-current) master)"
-    dbl = "!git diff --name-only $(git merge-base $(git branch --show-current) master)"
+    db = "!git diff $(git merge-base $(git branch --show-current) develop)"
+    dbl = "!git diff --name-only $(git merge-base $(git branch --show-current) develop)"
     ds = diff --stat
 
     f = fetch --all
@@ -88,6 +89,7 @@
     puf = push --force
     pun = push --no-verify
     puu = "!f() { git push --set-upstream origin $(git branch --show-current)${1:+:$1}; }; f"
+    puuf = "!f() { git push --set-upstream origin $(git branch --show-current)${1:+:$1} --force; }; f"
 
     # create a pull request. first argument is pull request name.
     pr = "!f() { \
@@ -107,7 +109,7 @@
     rbd = rb develop
     rbm = rb master
     rbos = rb --strategy-option theirs
-    rh = reset HEAD
+    rh = "!f() { git reset HEAD${1:+\\~$1}; }; f"
     root = rev-parse --show-toplevel
     rp = reset --patch
     rr = remote --verbose
@@ -117,7 +119,7 @@
       REBASE_BRANCH_NAME=$(git branch --show-current)-$(date +'%I-%M-%S.%d-%m-%y'); \
       git checkout -b $REBASE_BRANCH_NAME; \
       git rebase --empty drop --interactive --strategy-option theirs $1; \
-      if $(git diff --exit-code $BRANCH_NAME); then \
+      if $(git diff --exit-code --quiet $BRANCH_NAME); then \
         git branch --move $BRANCH_NAME $REBASE_BRANCH_NAME-pre-rebase; \
         git branch --move $REBASE_BRANCH_NAME $BRANCH_NAME; \
         echo Rebase completed successfully.; \
@@ -179,6 +181,7 @@
 
 [push]
     default = current
+    autoSetupRemote = true
 
 [core]
     safecrlf = false
