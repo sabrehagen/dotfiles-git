@@ -1,4 +1,4 @@
-    [alias]
+[alias]
     a = add
     aa = diff --cached
     alias = "!f() { git config -l | grep alias | sed 's/^alias\\.//g' | grep -v ^alias | grep -E ^$1=; }; f"
