@@ -212,20 +212,26 @@
 
 [diff]
     interHunkContext = 0
+
 [user]
-	email = Jackson.Delahunt@cba.tech
-	name = Jackson Delahunt
+    email = jackson@stemn.com
+    name = Jackson Delahunt
     username = sabrehagen
+
 [diff-so-fancy]
     stripLeadingSymbols = false
+
 [init]
     defaultBranch = master
+
 [pull]
     rebase = true
+
 [rebase]
     autostash = true
+
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
