@@ -183,13 +183,6 @@
     default = current
     autoSetupRemote = true
 
-[core]
-    safecrlf = false
-    pager = diff-so-fancy | less -RFX
-
-[sequence]
-    editor = rebase-editor
-
 [interactive]
     singleKey = true
 
@@ -213,11 +206,6 @@
 [diff]
     interHunkContext = 0
 
-[user]
-    email = jackson@stemn.com
-    name = Jackson Delahunt
-    username = sabrehagen
-
 [diff-so-fancy]
     stripLeadingSymbols = false
 
@@ -235,3 +223,15 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
+[user]
+    email = jackson@stemn.com
+    name = Jackson Delahunt
+    username = sabrehagen
+
+[core]
+    safecrlf = false
+    pager = diff-so-fancy | less -RFX
+
+[sequence]
+    editor = rebase-editor
