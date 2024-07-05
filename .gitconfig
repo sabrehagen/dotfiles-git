@@ -235,3 +235,5 @@
 
 [sequence]
     editor = rebase-editor
+[advice]
+    skippedCherryPicks = false
