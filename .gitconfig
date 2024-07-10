@@ -196,13 +196,13 @@
     newHighlight = 114 bold 22
 
 [color "diff"]
-    meta = 98
-    frag = 227 bold
+    meta = 227
+    frag = 92 bold
     commit = yellow bold
     old = 203 bold
     new = 114 bold
     whitespace = 203 reverse
-    func = 229 bold
+    func = 98 bold
 
 [diff]
     interHunkContext = 0
