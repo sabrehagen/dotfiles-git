@@ -43,6 +43,7 @@
 
     d = diff
     dc = diff -U0
+    dd = "!$HOME/.config/scripts/git-diff-classic.sh"
     dl = diff --name-only
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
     db = "!git diff $(git merge-base $(git branch --show-current) develop)"
@@ -191,9 +192,9 @@
 
 [color "diff-highlight"]
     oldNormal = red bold
-    oldHighlight = red bold 1
+    oldHighlight = red bold red
     newNormal = green bold
-    newHighlight = green bold 2
+    newHighlight = green bold green
 
 [color "diff"]
     meta = yellow
@@ -202,7 +203,24 @@
     old = red bold
     new = green bold
     whitespace = red reverse
-    func = 98 bold
+    func = cyan
+
+# Classic git diff colours
+
+# [color "diff-highlight"]
+#     oldNormal = 203 bold
+#     oldHighlight = 203 bold 52
+#     newNormal = 114 bold
+#     newHighlight = 114 bold 22
+
+# [color "diff"]
+#     meta = 227
+#     frag = 92 bold
+#     commit = yellow bold
+#     old = 203 bold
+#     new = 114 bold
+#     whitespace = 203 reverse
+#     func = 98 bold
 
 [diff]
     interHunkContext = 0
