@@ -192,9 +192,9 @@
 
 [color "diff-highlight"]
     oldNormal = red bold
-    oldHighlight = red bold red
+    oldHighlight = reverse bold red
     newNormal = green bold
-    newHighlight = green bold green
+    newHighlight = reverse bold green
 
 [color "diff"]
     meta = yellow
