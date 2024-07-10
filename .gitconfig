@@ -190,18 +190,19 @@
     ui = true
 
 [color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+    oldNormal = 203 bold
+    oldHighlight = 203 bold 52
+    newNormal = 114 bold
+    newHighlight = 114 bold 22
 
 [color "diff"]
-    meta = yellow
-    frag = magenta bold
+    meta = 98
+    frag = 227 bold
     commit = yellow bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
+    old = 203 bold
+    new = 114 bold
+    whitespace = 203 reverse
+    func = 229 bold
 
 [diff]
     interHunkContext = 0
