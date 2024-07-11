@@ -46,8 +46,9 @@
     dd = "!$HOME/.config/scripts/git-diff-classic.sh"
     dl = diff --name-only
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
-    db = "!git diff $(git merge-base $(git branch --show-current) develop)"
-    dbl = "!git diff --name-only $(git merge-base $(git branch --show-current) develop)"
+    db = "!f() { git diff $(git merge-base $(git branch --show-current) ${1-master}); }; f"
+    dbl = "!f() { git diff --name-only $(git merge-base $(git branch --show-current) ${1-master}); }; f"
+    dbp = "!f() { git --no-pager diff --no-color $(git merge-base $(git branch --show-current) ${1:-master}); }; f"
     ds = diff --stat
 
     f = fetch --all
@@ -82,6 +83,7 @@
     ma = merge --abort
 
     p = pull
+    patch = !git --no-pager diff --no-color
     po = pull --no-edit --strategy recursive --strategy-option ours
     pp = "!git pull --no-edit; git push"
     psu = "!f() { git branch --set-upstream-to origin/$(git branch --show-current); git pull; }; f"
@@ -99,7 +101,7 @@
       git add .; \
       git cm $PR_NAME; \
       git push -u origin $BRANCH_NAME:$PR_NAME; \
-      hub pull-request -b develop -h $PR_NAME -m \"[WIP] ${PR_NAME}\"; \
+      hub pull-request -b master -h $PR_NAME -m \"[WIP] ${PR_NAME}\"; \
     }; f"
 
     r = remote get-url origin
