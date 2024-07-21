@@ -252,7 +252,7 @@
 
 [core]
     safecrlf = false
-    pager = diff-so-fancy | less -RFX
+    pager = diff-so-fancy | less --tabs=2 -RFX --pattern '^(Date|added|deleted|modified):'
 
 [sequence]
     editor = rebase-editor
