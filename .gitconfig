@@ -1,6 +1,7 @@
 [alias]
     a = add
     aa = diff --cached
+    aad = "!$HOME/.config/scripts/git-diff-classic.sh --cached $@"
     alias = "!f() { git config -l | grep alias | sed 's/^alias\\.//g' | grep -v ^alias | grep -E ^$1=; }; f"
     alias-branch = "!f() { git symbolic-ref refs/heads/$1 refs/heads/$2; }; f"
     ap = add --patch
