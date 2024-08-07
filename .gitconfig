@@ -1,7 +1,7 @@
 [alias]
     a = add
     aa = diff --cached
-    aad = "!$HOME/.config/scripts/git-diff-classic.sh --cached $@"
+    aad = "!$HOME/.config/scripts/git-classic-colours.sh diff --cached $@"
     alias = "!f() { git config -l | grep alias | sed 's/^alias\\.//g' | grep -v ^alias | grep -E ^$1=; }; f"
     alias-branch = "!f() { git symbolic-ref refs/heads/$1 refs/heads/$2; }; f"
     ap = add --patch
@@ -44,7 +44,7 @@
 
     d = diff
     dc = diff -U0
-    dd = "!$HOME/.config/scripts/git-diff-classic.sh"
+    dd = "!$HOME/.config/scripts/git-classic-colours.sh diff"
     dl = diff --name-only
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
     db = "!f() { git diff $(git merge-base $(git branch --show-current) ${1-master}); }; f"
@@ -139,6 +139,7 @@
     search-branch = "!f() { git rev-list $1 | GIT_PAGER=cat xargs git grep -E \"$2\"; }; f"
     sf = "!f() { git diff $(git hash-object -t tree /dev/null) ${1-master}; }; f" # show all files on branch
     sh = "!f() { git show HEAD${1:+\\~$1}; }; f"
+    shd = "!f() { $HOME/.config/scripts/git-classic-colours.sh show HEAD${1:+\\~$1}; }; f"
     shl = "!f() { git show --name-status HEAD${1:+\\~$1}; }; f"
     sl = stash list
     sp = stash pop

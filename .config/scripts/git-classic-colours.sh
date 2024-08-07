@@ -10,4 +10,4 @@ git -c color.diff-highlight.oldNormal='203 bold' \
     -c color.diff.new='113 bold' \
     -c color.diff.whitespace='203 reverse' \
     -c color.diff.func='146 bold' \
-    diff "$@"
+    "$@"
