@@ -135,8 +135,8 @@
 
     s = status
     sa = stash apply
-    search = "!f() { git rev-list --all | GIT_PAGER=cat xargs git grep -E \"$@\"; }; f"
-    search-branch = "!f() { git rev-list $1 | GIT_PAGER=cat xargs git grep -E \"$2\"; }; f"
+    search = "!f() { git rev-list --all | GIT_PAGER=less xargs git grep -E \"$@\"; }; f"
+    search-branch = "!f() { git rev-list $1 | GIT_PAGER=less xargs git grep -E \"$2\"; }; f"
     sf = "!f() { git diff $(git hash-object -t tree /dev/null) ${1-master}; }; f" # show all files on branch
     sh = "!f() { git show HEAD${1:+\\~$1}; }; f"
     shd = "!f() { $HOME/.config/scripts/git-classic-colours.sh show HEAD${1:+\\~$1}; }; f"
