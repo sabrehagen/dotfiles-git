@@ -95,16 +95,6 @@
     puu = "!f() { git push --set-upstream origin $(git branch --show-current)${1:+:$1}; }; f"
     puuf = "!f() { git push --set-upstream origin $(git branch --show-current)${1:+:$1} --force; }; f"
 
-    # create a pull request. first argument is pull request name.
-    pr = "!f() { \
-      BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD); \
-      PR_NAME=${1-$BRANCH_NAME}; \
-      git add .; \
-      git cm $PR_NAME; \
-      git push -u origin $BRANCH_NAME:$PR_NAME; \
-      hub pull-request -b master -h $PR_NAME -m \"[WIP] ${PR_NAME}\"; \
-    }; f"
-
     r = remote get-url origin
     ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
     rb = rebase --interactive --committer-date-is-author-date
