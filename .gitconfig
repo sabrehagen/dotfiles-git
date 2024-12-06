@@ -36,6 +36,7 @@
     cmp = "!f() { git commit --message \"$1\"; git push; }; f"
     co = checkout
     cob = "!f() { git checkout -b $(echo $1 | tr ' ' -); }; f"
+    cod = git co develop
     com = !git co $(git master-branch)
     coo = checkout --ours
     coop = checkout --ours --patch
