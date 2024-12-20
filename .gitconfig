@@ -12,10 +12,10 @@
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     bc = "!f() { git branch --merged | egrep -v \"(^\\*|$(git master-branch)|staging)\" | xargs git branch -d; }; f"
-    bd = branch --delete
     bls = ls-remote --heads
     bmv = branch --move
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
+    brm = branch --delete
     bu = branch --set-upstream-to
     buu = "!f() { git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current); }; f"
 
