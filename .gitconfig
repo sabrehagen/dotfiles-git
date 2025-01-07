@@ -241,11 +241,6 @@
     process = git-lfs filter-process
     required = true
 
-[user]
-    email = jackson@stemn.com
-    name = Jackson Delahunt
-    username = sabrehagen
-
 [core]
     safecrlf = false
     pager = diff-so-fancy | less --tabs=2 -RFX --pattern '^(Date|added|deleted|modified):'
@@ -254,3 +249,6 @@
     editor = rebase-editor
 [advice]
     skippedCherryPicks = false
+
+[include]
+    path = ~/.gitconfig-private
