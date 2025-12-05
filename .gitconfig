@@ -243,10 +243,15 @@
 
 [core]
     safecrlf = false
-    pager = diff-so-fancy | less --tabs=2 -RFX --pattern '^(Date|added|deleted|modified):'
+
+[pager]
+    # diff = diff-so-fancy | less --tabs=2 -RFX --pattern '^(Date|added|deleted|modified):'
+    show = diff-so-fancy-smart '^(commit [a-f0-9]+|(added|deleted|modified|renamed): )'
+    diff = diff-so-fancy-smart '^(added|deleted|modified|renamed): '
 
 [sequence]
     editor = rebase-editor
+
 [advice]
     skippedCherryPicks = false
 
