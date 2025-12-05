@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Prevents opening diff in pager if pattern not found, preventing less blocking exit on "match not found"
+pattern="$1"
+diff="$(cat - | diff-so-fancy)"
+
+remove_colors() {
+  sed --regexp-extended "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+}
+
+if echo "$diff" | remove_colors | grep --silent --perl-regexp "$pattern"; then
+  LESS_ARGS=--pattern="$pattern"
+else
+  LESS_ARGS=--quit-at-eof
+fi
+
+# View in pager with appropriate configuration
+echo -n "$diff" | less "$LESS_ARGS"
