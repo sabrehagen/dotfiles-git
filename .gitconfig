@@ -70,7 +70,7 @@
         REPO_URL=\"$REPO\"; \
       fi; \
       REPO_NAME=$(basename \"$REPO_URL\" | sed 's/\\.git$//'); \
-      CLONE_ARGS=\"\"; \
+      CLONE_ARGS=\"--depth 1 --single-branch\"; \
       while [ $# -gt 1 ]; do \
         CLONE_ARGS=\"$CLONE_ARGS $1\"; \
         shift; \
