@@ -230,9 +230,6 @@
 #     whitespace = 203 reverse
 #     func = 98 bold
 
-[diff]
-    interHunkContext = 0
-
 [diff-so-fancy]
     stripLeadingSymbols = false
 
