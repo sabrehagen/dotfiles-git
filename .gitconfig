@@ -91,7 +91,7 @@
 
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     lf = "!git ls-files ~"
-    ll = "!$HOME/.config/scripts/git-fzf-log.sh"
+    ll = "!zsh -i -c fzf-git-log"
     lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
     m = merge
