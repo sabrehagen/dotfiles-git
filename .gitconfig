@@ -75,6 +75,7 @@
         CLONE_ARGS=\"$CLONE_ARGS $1\"; \
         shift; \
       done; \
+      if [ -d \"$REPO_NAME\" ]; then echo \"Already cloned, entering...\"; return; fi; \
       git clone $CLONE_ARGS \"$REPO_URL\" \"$REPO_NAME\"; \
       cd \"$REPO_NAME\"; \
       git remote set-branches origin '*'; \
