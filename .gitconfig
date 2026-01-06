@@ -64,6 +64,7 @@
     get = "!f() { \
       REPO=\"\"; \
       for REPO in \"$@\"; do :; done; \
+      if ! printf '%s' \"$REPO\" | grep -q '/'; then echo \"Invalid repository\"; exit 1; fi; \
       if ! printf '%s' \"$REPO\" | grep -q 'github\\.com'; then \
         REPO_URL=\"git@github.com:$REPO\"; \
       else \
@@ -76,7 +77,7 @@
         shift; \
       done; \
       if [ -d \"$REPO_NAME\" ]; then echo \"Already cloned, entering...\"; return; fi; \
-      git clone $CLONE_ARGS \"$REPO_URL\" \"$REPO_NAME\"; \
+      git clone $CLONE_ARGS \"$REPO_URL\" \"$REPO_NAME\" || exit $?; \
       cd \"$REPO_NAME\"; \
       git remote set-branches origin '*'; \
       git fetch; \
