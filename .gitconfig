@@ -120,9 +120,11 @@
     rbm = !git rb $(git master-branch)
     rbos = rb --strategy-option theirs
     rh = "!f() { git reset HEAD${1:+\\~$1}; }; f"
+    rmv = remote rename
     root = rev-parse --show-toplevel
     rp = reset --patch
     rr = remote --verbose
+    rrm = remote remove
 
     rbo = "!f() { \
       BRANCH_NAME=$(git branch --show-current); \
