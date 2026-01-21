@@ -266,5 +266,8 @@
 [advice]
     skippedCherryPicks = false
 
+[diff "vcsh-exclude-theme-changes"]
+    textconv = ~/.config/scripts/vcsh-exclude-theme-changes.sh
+
 [include]
     path = ~/.gitconfig-private
