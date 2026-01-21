@@ -267,7 +267,10 @@
     skippedCherryPicks = false
 
 [diff "vcsh-exclude-theme-changes"]
-    textconv = ~/.config/scripts/vcsh-exclude-theme-changes.sh
+    textconv = "sed '/#[0-9a-fA-F]\\{6\\}/d'"
+
+[filter "vcsh-exclude-theme-changes"]
+    clean = "sed '/#[0-9a-fA-F]\\{6\\}/d'"
 
 [include]
     path = ~/.gitconfig-private
