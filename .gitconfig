@@ -267,10 +267,11 @@
     skippedCherryPicks = false
 
 [diff "vcsh-exclude-theme-changes"]
-    textconv = "sed '/#[0-9a-fA-F]\\{6\\}/d'"
+    textconv = "sed 's/#[0-9a-fA-F]\\{6\\}/#XXXXXX/g'"
 
 [filter "vcsh-exclude-theme-changes"]
-    clean = "sed '/#[0-9a-fA-F]\\{6\\}/d'"
+    clean = "sed 's/#[0-9a-fA-F]\\{6\\}/#XXXXXX/g'"
+    smudge = cat
 
 [include]
     path = ~/.gitconfig-private
