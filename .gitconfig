@@ -49,6 +49,7 @@
     dc = diff -U0
     dd = "!$HOME/.config/scripts/git-classic-colours.sh diff"
     dl = diff --name-only
+    dp = !git --no-pager diff --patch
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
     db = "!f() { git diff $(git merge-base $(git branch --show-current) ${1-$(git master-branch)}); }; f"
     dbl = "!f() { git diff --name-only $(git merge-base $(git branch --show-current) ${1-$(git master-branch)}); }; f"
@@ -254,6 +255,7 @@
 
 [core]
     safecrlf = false
+    checkStat = minimal
 
 [pager]
     # diff = diff-so-fancy | less --tabs=2 -RFX --pattern '^(Date|added|deleted|modified):'
@@ -271,6 +273,20 @@
 
 [filter "vcsh-exclude-theme-changes"]
     clean = "sed 's/#[0-9a-fA-F]\\{6\\}/#XXXXXX/g'"
+    smudge = cat
+
+[diff "vcsh-exclude-nicotine"]
+    textconv = "sed -E -e 's/^history = .*/history = []/' -e 's/^(started_downloads|completed_downloads|downloaded_size|since_timestamp) = .*/\\1 = 0/' -e 's/^chat_room = .*/chat_room = {}/' -e 's/^private_chats = .*/private_chats = []/' -e 's/^users = \\[.*\\]/users = []/' -e 's/^last_tab_id = .*/last_tab_id = hidden/'"
+
+[filter "vcsh-exclude-nicotine"]
+    clean = "sed -E -e 's/^history = .*/history = []/' -e 's/^(started_downloads|completed_downloads|downloaded_size|since_timestamp) = .*/\\1 = 0/' -e 's/^chat_room = .*/chat_room = {}/' -e 's/^private_chats = .*/private_chats = []/' -e 's/^users = \\[.*\\]/users = []/' -e 's/^last_tab_id = .*/last_tab_id = hidden/'"
+    smudge = cat
+
+[diff "vcsh-exclude-ksnip"]
+    textconv = "sed -E -e 's/^LastRectArea=.*/LastRectArea=@Rect(0 0 0 0)/' -e 's/^AnnotatorDockWidgetsState=.*/AnnotatorDockWidgetsState=@ByteArray()/' -e 's/^Position=.*/Position=@Point(0 0)/'"
+
+[filter "vcsh-exclude-ksnip"]
+    clean = "sed -E -e 's/^LastRectArea=.*/LastRectArea=@Rect(0 0 0 0)/' -e 's/^AnnotatorDockWidgetsState=.*/AnnotatorDockWidgetsState=@ByteArray()/' -e 's/^Position=.*/Position=@Point(0 0)/'"
     smudge = cat
 
 [include]
