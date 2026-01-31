@@ -289,5 +289,13 @@
     clean = "sed -E -e 's/^LastRectArea=.*/LastRectArea=@Rect(0 0 0 0)/' -e 's/^AnnotatorDockWidgetsState=.*/AnnotatorDockWidgetsState=@ByteArray()/' -e 's/^Position=.*/Position=@Point(0 0)/'"
     smudge = cat
 
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+
 [include]
     path = ~/.gitconfig-private
