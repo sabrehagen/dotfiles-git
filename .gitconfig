@@ -297,5 +297,8 @@
 	helper =
 	helper = !/usr/bin/gh auth git-credential
 
+[safe]
+	directory = /opt
+
 [include]
     path = ~/.gitconfig-private
