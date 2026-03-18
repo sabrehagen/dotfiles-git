@@ -283,6 +283,13 @@
     clean = "sed -E -e 's/^history = .*/history = []/' -e 's/^(started_downloads|completed_downloads|downloaded_size|since_timestamp) = .*/\\1 = 0/' -e 's/^chat_room = .*/chat_room = {}/' -e 's/^private_chats = .*/private_chats = []/' -e 's/^users = \\[.*\\]/users = []/' -e 's/^last_tab_id = .*/last_tab_id = hidden/'"
     smudge = cat
 
+[diff "vcsh-exclude-i3-gaps-and-separator"]
+    textconv = "sed -E -e 's/^gaps inner .*/gaps inner 0/' -e 's/^separator_block_width=.*/separator_block_width=0/'"
+
+[filter "vcsh-exclude-i3-gaps-and-separator"]
+    clean = "sed -E -e 's/^gaps inner .*/gaps inner 0/' -e 's/^separator_block_width=.*/separator_block_width=0/'"
+    smudge = cat
+
 [diff "vcsh-exclude-ksnip"]
     textconv = "sed -E -e 's/^LastRectArea=.*/LastRectArea=@Rect(0 0 0 0)/' -e 's/^AnnotatorDockWidgetsState=.*/AnnotatorDockWidgetsState=@ByteArray()/' -e 's/^Position=.*/Position=@Point(0 0)/'"
 
