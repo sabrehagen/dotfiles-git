@@ -297,6 +297,13 @@
     clean = "sed -E -e 's/^LastRectArea=.*/LastRectArea=@Rect(0 0 0 0)/' -e 's/^AnnotatorDockWidgetsState=.*/AnnotatorDockWidgetsState=@ByteArray()/' -e 's/^Position=.*/Position=@Point(0 0)/'"
     smudge = cat
 
+[diff "vcsh-exclude-xsettingsd"]
+    textconv = "sed -E 's/^Net\\/ThemeName .*/Net\\/ThemeName \"warna\"/'"
+
+[filter "vcsh-exclude-xsettingsd"]
+    clean = "sed -E 's/^Net\\/ThemeName .*/Net\\/ThemeName \"warna\"/'"
+    smudge = cat
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
