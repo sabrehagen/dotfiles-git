@@ -304,6 +304,13 @@
     clean = "sed -E 's/^Net\\/ThemeName .*/Net\\/ThemeName \"warna\"/'"
     smudge = cat
 
+[diff "vcsh-exclude-gcsf"]
+    textconv = "jq '.[].token.access_token = \"\" | .[].token.expires_at = []'"
+
+[filter "vcsh-exclude-gcsf"]
+    clean = "jq '.[].token.access_token = \"\" | .[].token.expires_at = []'"
+    smudge = cat
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
