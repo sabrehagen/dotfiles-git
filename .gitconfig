@@ -52,6 +52,8 @@
     dp = !git --no-pager diff --patch
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
     db = "!f() { git diff $(git merge-base $(git branch --show-current) ${1-$(git master-branch)}); }; f"
+    dbb = "!f() { git diff $(git merge-base ${2:-$(git master-branch)} $1) $1; }; f"
+    dbbl = "!f() { git diff --name-only $(git merge-base ${2:-$(git master-branch)} $1) $1; }; f"
     dbl = "!f() { git diff --name-only $(git merge-base $(git branch --show-current) ${1-$(git master-branch)}); }; f"
     dbp = "!f() { git --no-pager diff --no-color $(git merge-base $(git branch --show-current) ${1:-$(git master-branch)}); }; f"
     ds = diff --stat
