@@ -195,6 +195,8 @@
       git push -u origin $SPLIT_NAME; \
     }; f"
 
+    ut = ls-files --others --exclude-standard
+
 [push]
     default = current
     autoSetupRemote = true
