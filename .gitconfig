@@ -50,6 +50,7 @@
     dd = "!$HOME/.config/scripts/git-classic-colours.sh diff"
     dl = diff --name-only
     dp = !git --no-pager diff --patch
+    dpl = diff ORIG_HEAD
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
     db = "!f() { git diff $(git merge-base $(git branch --show-current) ${1-$(git master-branch)}); }; f"
     dbb = "!f() { git diff $(git merge-base ${2:-$(git master-branch)} $1) $1; }; f"
