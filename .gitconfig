@@ -251,8 +251,12 @@
 [pull]
     rebase = true
 
+[cherry-pick]
+    committerDateIsAuthorDate = true
+
 [rebase]
     autostash = true
+    committerDateIsAuthorDate = true
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
